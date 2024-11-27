@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"rel="stylesheet"  />
+</head>
+<body>
+  <div class="container">
+    <form name='submit-to-google-sheet' class="form">
+      <h3 class="formh3">Hallo Kawan-Kawan</h3>
+      <input class="input" name="Nama" type="text" placeholder="Nama">
+      <textarea class="input" name="Pesan" placeholder="Pesan" rows="6"></textarea>
+      <button type="sumbit" name="myButton">Kirim</button>
+      <span id="msg"></span>
+      
+
+    </form>
+
+  </div>
+
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyEtsBAAEqIbEe5KT-FTVut5e2BgcrXxduTH1tulETiyrhT1rVdYgdrUSOGxNJifv2HPA/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById('msg')
+  
+    form.addEventListener('submit', e => {
+
+e.preventDefault()
+
+fetch(scriptURL, { method: 'POST', body: new FormData(form)}) .then(response => console.log('Success!', response)) 
+form.reset()
+.catch(error => console.error('Error!', error.message)) 
+
+    })
+    
+    
+
+  </script>
+
+</body>
+</html>
